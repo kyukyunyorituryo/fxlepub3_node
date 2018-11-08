@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:epub="http://www.idpf.org/2007/ops" xml:lang="ja">
+	<head>
+		<meta charset="UTF-8" />
+		<title><%= title %></title>
+	</head>
+	<body>
+		<nav epub:type="toc" id="toc">
+			<h1>Navigation</h1>
+			<ol>
+				<li>
+					<a href="xhtml/p-cover.xhtml"><%= cover %></a>
+				</li>
+<% for (let i=1; i < data.index.length ; i++) { -%>
+				<li>
+					<a href="xhtml/p-<%= mokuji[i-1][1] %>.xhtml"><%= data.index[i][1] %></a>
+				</li>
+<% } -%>
+			</ol>
+		</nav>
+	</body>
+</html>

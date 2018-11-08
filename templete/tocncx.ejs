@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!-- For compatibility with ePub2 Player -->
+<ncx:ncx
+	xmlns:ncx="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+	<ncx:head>
+		<ncx:meta name="dtb:uid" content="urn:uuid:<%= uuid4 %>"/>
+		<ncx:meta name="dtb:depth" content="-1"/>
+		<ncx:meta name="dtb:totalPageCount" content="0"/>
+		<ncx:meta name="dtb:maxPageNumber" content="0"/>
+	</ncx:head>
+	<ncx:docTitle>
+		<ncx:text><%= title %></ncx:text>
+	</ncx:docTitle>
+	<ncx:docAuthor>
+		<ncx:text><%= creator1 %></ncx:text>
+	</ncx:docAuthor>
+	<ncx:navMap>
+		<ncx:navPoint id="p01" playOrder="1">
+			<ncx:navLabel>
+				<ncx:text><%= cover %></ncx:text>
+			</ncx:navLabel>
+			<ncx:content src="xhtml/p-cover.xhtml"/>
+		</ncx:navPoint>
+<% for (let i=1; i < data.index.length ; i++) { -%>
+		<ncx:navPoint id="nav<%= i %>" playOrder="<%= i+1 %>">
+			<ncx:navLabel>
+				<ncx:text><%= data.index[i][1] %></ncx:text>
+			</ncx:navLabel>
+			<ncx:content src="xhtml/p-<%= mokuji[i-1][1] %>.xhtml"/>
+		</ncx:navPoint>
+<% } -%>
+	</ncx:navMap>
+</ncx:ncx>

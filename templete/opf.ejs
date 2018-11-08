@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package
+	xmlns="http://www.idpf.org/2007/opf" version="3.0" xml:lang="ja" unique-identifier="unique-id" prefix="rendition: http://www.idpf.org/vocab/rendition/# ebpaj: http://www.ebpaj.jp/">
+	<metadata
+		xmlns:dc="http://purl.org/dc/elements/1.1/">
+		<!-- 作品名 -->
+		<dc:title id="title"><%= title %></dc:title>
+		<!-- 著者名 -->
+		<dc:creator id="creator01"><%= creator1 %></dc:creator>
+		<dc:creator id="creator02"><%= creator2 %></dc:creator>
+		<!-- 出版社名 -->
+		<!-- 言語 -->
+		<dc:language id="language">ja</dc:language>
+		<!-- ファイルid -->
+		<dc:identifier id="unique-id">urn:uuid:<%= uuid4 %></dc:identifier>
+		<!-- 更新日 -->
+		<meta property="dcterms:modified"><%= date %></meta>
+		<!-- Fixed-Layout Documents指定 -->
+		<meta property="rendition:layout">pre-paginated</meta>
+		<meta property="rendition:spread">landscape</meta>
+		<!-- etc. -->
+		<meta property="ebpaj:guide-version">1.1</meta>
+		<meta name="primary-writing-mode" content="<%= panel_view %>"/>
+	</metadata>
+	<manifest>
+		<!-- navigation -->
+		<item media-type="application/xhtml+xml" id="toc" href="nav.xhtml" properties="nav"/>
+		<item media-type="application/x-dtbncx+xml" id="ncxtoc" href="toc.ncx"/>
+		<!-- style -->
+		<item media-type="text/css" id="fixed-layout-jp" href="style/fixed-layout-jp.css"/>
+		<!-- image -->
+		<item media-type="<%= type %>" id="cover" href="image/cover.<%= cover_ext %>" properties="cover-image"/>
+<% for (let i in data.files) { -%>
+		<item media-type="<%= data.files[i].type %>" id="<%= data.files[i].file_id %>" href="image/<%= data.files[i].file_id+"."+data.files[i].ext %>"/>
+<% } -%>
+		<!-- xhtml -->
+		<item media-type="application/xhtml+xml" id="p-cover" href="xhtml/p-cover.xhtml" properties="svg" fallback="cover"/>
+<% for (let i in data.files) { 
+var pageid="p-"+ ('0000' + (parseInt(i)+1) ).slice( -3 )
+-%>
+		<item media-type="application/xhtml+xml" id="<%= pageid %>" href="xhtml/<%= pageid %>.xhtml" properties="svg" fallback="<%= data.files[i].file_id %>"/>
+<% } -%>
+	</manifest>
+	<spine toc="ncxtoc" page-progression-direction="<%= page_direction %>">
+		<itemref linear="yes" idref="p-cover" properties="rendition:page-spread-center"/>
+<% for (let i in data.files) {
+pageid="p-"+ ('0000' + (parseInt(i)+1) ).slice( -3 )
+if(page_direction == "rtl"){
+if (i%2 == 0 ){
+ -%>
+		<itemref linear="yes" idref="<%= pageid %>" properties="page-spread-right"/>
+<% }else { -%>
+		<itemref linear="yes" idref="<%= pageid %>" properties="page-spread-left"/>
+<%} } -%>
+<% if(page_direction == "ltr"){
+if (i%2 == 0 ){
+ -%>
+		<itemref linear="yes" idref="<%= pageid %>" properties="page-spread-left"/>
+<% }else { -%>
+		<itemref linear="yes" idref="<%= pageid %>" properties="page-spread-right"/>
+<%} } -%>
+<% } -%>
+	</spine>
+</package>
