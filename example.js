@@ -19,5 +19,4 @@ var data={
 "cover_file": {},
 "files": []
 }
-
 epub.gen(data)

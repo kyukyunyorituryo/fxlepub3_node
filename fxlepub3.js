@@ -144,5 +144,4 @@ zip
     // but is piped here in a writable stream which emits a "finish" event.
     console.log("out.epub written.");
 });
-
 }
