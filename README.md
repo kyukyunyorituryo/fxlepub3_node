@@ -1,4 +1,3 @@
-# epub-gen - a library to make EPUBs from HTML
 # fxlepub3
 generate EPUB from images in Node.js.
 ------
