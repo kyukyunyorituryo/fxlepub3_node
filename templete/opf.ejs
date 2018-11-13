@@ -7,7 +7,9 @@
 		<dc:title id="title"><%= title %></dc:title>
 		<!-- 著者名 -->
 		<dc:creator id="creator01"><%= creator1 %></dc:creator>
+<% if (creator2 !== "" || creator2 === null) {-%>
 		<dc:creator id="creator02"><%= creator2 %></dc:creator>
+<% } -%>
 		<!-- 出版社名 -->
 		<!-- 言語 -->
 		<dc:language id="language">ja</dc:language>

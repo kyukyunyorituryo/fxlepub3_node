@@ -23,6 +23,7 @@ var dimensions = sizeOf(f_data);
 //console.log(type)
 if(file_names[i].split('.')[0] == 'cover'){
 data.cover_file= {
+"id" :'cover',
 "file_id": file_names[i].split('.')[0],
 "file_name": file_names[i],
 "data": f_data,
@@ -31,7 +32,7 @@ data.cover_file= {
 }
 data.width=dimensions.width
 data.height=dimensions.height
-}else {
+}else{
 data.files.push(
 {
 "id" :('0000' + (parseInt(i) +1)) .slice( -3 ),
@@ -81,7 +82,7 @@ var opf = ejs.render(opftemplete, {
     type:data.cover_file.type,
     data:data
 })
-//console.log(opf)
+console.log(opf)
 var tocncx = ejs.render(toctemplete, {
     uuid4:uuid4,
     creator1: data.author1 ,

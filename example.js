@@ -14,8 +14,6 @@ var data={
     ],
 "page_direction": "rtl",
 "panel_view": "horizontal-rl",
-//"width": 800,
-//"height": 1200,
 "cover_file": {},
 "files": []
 }
