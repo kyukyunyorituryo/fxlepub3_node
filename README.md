@@ -4,8 +4,7 @@ generate EPUB from images in Node.js.
 
 ## Usage
 
-
-	npm install fxlepub3
+npmの公開停止
 
 
 ## Demo Code:
