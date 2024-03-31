@@ -23,11 +23,7 @@ var data={
     ["00005.jpg", "最終ページ"]
     ],
 "page_direction": "rtl",
-"panel_view": "horizontal-rl",
-//"width": 800,
-//"height": 1200,
-"cover_file": {},
-"files": []
+"panel_view": "horizontal-rl"
 }
 
 epub.gen(data)
