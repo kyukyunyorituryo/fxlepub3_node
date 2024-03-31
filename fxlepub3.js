@@ -8,11 +8,15 @@ var JSZip = require("jszip");
 var filetype = require('file-type');
 var sizeOf = require('image-size');
 //console.log(uuid4)
+// Using CommonJS modules
+const { compare } = require('natural-orderby');
 
 exports.gen= function (data) {
+data.files=[]
+//console.log(data)
 
 //フォルダー内の読み込み
-var file_names = fs.readdirSync(data.url);
+var file_names = fs.readdirSync(data.url).sort(compare());;
 //console.log(file_names);
 for (var i in file_names) {
 //console.log(file_names[i]);
@@ -43,6 +47,7 @@ data.files.push(
 "ext":type.ext
 });}}
 
+console.log(data)
 //目次データの突き合わせ
 mokuji=[]
 for (let i=1; i < data.index.length ; i++) {
@@ -82,7 +87,7 @@ var opf = ejs.render(opftemplete, {
     type:data.cover_file.type,
     data:data
 })
-console.log(opf)
+//console.log(opf)
 var tocncx = ejs.render(toctemplete, {
     uuid4:uuid4,
     creator1: data.author1 ,
@@ -143,6 +148,6 @@ zip
 .on('finish', function () {
     // JSZip generates a readable stream with a "end" event,
     // but is piped here in a writable stream which emits a "finish" event.
-    console.log("out.epub written.");
+    console.log(data.output+"に出力されました。");
 });
 }
