@@ -10,7 +10,7 @@ var sizeOf = require('image-size');
 //console.log(uuid4)
 // Using CommonJS modules
 const { compare } = require('natural-orderby');
-
+//var pdf2image = require('./pdf2image.js'); 
 exports.gen= function (data) {
 data.files=[]
 //console.log(data)
@@ -18,6 +18,7 @@ data.files=[]
 //フォルダー内の読み込み
 var file_names = fs.readdirSync(data.url).sort(compare());;
 //console.log(file_names);
+//file_names.filter(val => { return val.split('.')[0] === 'cover'}).length
 for (var i in file_names) {
 //console.log(file_names[i]);
 f_data=fs.readFileSync(data.url + file_names[i])
@@ -75,6 +76,7 @@ var nav = ejs.render(navtemplete, {
     mokuji:mokuji
 })
 //console.log(nav)
+if(data.author2==null)data.author2=''
 var opf = ejs.render(opftemplete, {
     uuid4:uuid4,
     title: data.title,

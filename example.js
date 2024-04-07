@@ -6,9 +6,7 @@ var data={
 "output":'C:/Users/Owner/Downloads/comic/out.epub',
 "title": "タイトル",
 "author1": "著者名1",
-"author2": "著者名２",
 "index": [
-    ["cover.jpg", "表紙"],
     ["1.jpg", "目次"],
     ["5.jpg", "最終ページ"]
     ],
