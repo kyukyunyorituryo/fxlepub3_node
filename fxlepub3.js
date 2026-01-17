@@ -1,29 +1,43 @@
-const uuidv4 = require('uuid/v4');
-var uuid4 = uuidv4()
+const { v4: uuidv4 } = require('uuid');
+var uuid4 = uuidv4();
 var today = new Date();
 var date = today.toISOString().slice(0,19)+"Z";
 fs = require('fs');
 ejs = require('ejs');
 var JSZip = require("jszip");
-var filetype = require('file-type');
-var sizeOf = require('image-size');
+const { fileTypeFromBuffer } = require('file-type');
+const { imageSize } = require('image-size');
 //console.log(uuid4)
 // Using CommonJS modules
 const { compare } = require('natural-orderby');
 //var pdf2image = require('./pdf2image.js'); 
-exports.gen= function (data) {
+exports.gen = async function (data) {
 data.files=[]
 //console.log(data)
 
 //フォルダー内の読み込み
 var file_names = fs.readdirSync(data.url).sort(compare());;
-//console.log(file_names);
-//file_names.filter(val => { return val.split('.')[0] === 'cover'}).length
+console.log(file_names);
+if(file_names.filter(val => { return val.split('.')[0] === 'cover'})){
+
+}else{
+
+}
 for (var i in file_names) {
 //console.log(file_names[i]);
 f_data=fs.readFileSync(data.url + file_names[i])
-type=filetype(f_data);
-var dimensions = sizeOf(f_data);
+const type = await fileTypeFromBuffer(f_data);
+if (!type) {
+  console.warn('判定不能:', file_names[i]);
+  continue;
+}
+let dimensions;
+try {
+ dimensions = imageSize(f_data);
+} catch (e) {
+  console.warn('画像サイズ取得失敗:', file_names[i]);
+  continue;
+}
 //console.log(dimensions.width, dimensions.height);
 //console.log(type)
 if(file_names[i].split('.')[0] == 'cover'){
