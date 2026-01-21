@@ -18,13 +18,11 @@
   "author": "kyukyunyorituryo",
   "license": "MIT",
   "dependencies": {
-    "canvas": "^2.11.2",
     "ejs": "^4.0.1",
     "file-type": "^21.3.0",
     "image-size": "^2.0.2",
     "jszip": "^3.10.1",
     "natural-orderby": "^5.0.0",
-    "pdfjs-dist": "^4.0.379",
     "uuid": "^13.0.0"
   }
 }
