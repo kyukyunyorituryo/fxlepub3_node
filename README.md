@@ -65,27 +65,23 @@ project/
 ### 基本例
 
 ```js
-const { gen } = require('./index');
+var epub = require('./fxlepub3.js'); 
 
-gen({
-  title: 'サンプル書籍',
-  author1: '著者名',
-  author2: '',
-  url: './images',
-  output: './output.epub',
-
-  // 表示方向・レイアウト設定
-  panel_view: 'spread',
-  page_direction: 'rtl',
-
-  // 目次定義
-  index: [
-    ['cover.jpg', '表紙'],
-    ['001.jpg', '第1話'],
-    ['002.jpg', '第2話'],
-    ['003.jpg', '第3話'],
-  ],
-});
+var data={
+//"url":"C:\Users\Owner\Downloads\comic\testdata",
+"url":"D:/Download/comic/testdata/",
+//D:\Download\comic\testdata
+"output":'C:/Users/Owner/Downloads/out.epub',
+"title": "タイトル",
+"author1": "著者名1",
+"index": [
+    ["001.jpg", "目次"],
+    ["12.jpg", "最終ページ"]
+    ],
+"page_direction": "ltr",
+"panel_view": "vertical-lr",
+}
+epub.gen(data)
 ```
 
 ---
